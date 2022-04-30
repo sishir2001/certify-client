@@ -104,7 +104,7 @@ class Header extends React.Component {
         const componentRoute = this.props.location.pathname;
         console.log(`route : ${componentRoute}`);
         return (
-            <div className="bg-orange-100 shadow-lg w-screen p-4">
+            <div className="bg-amber-50 shadow-lg w-screen p-4">
                 <nav className="px-2 border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                     <div className="container flex flex-wrap items-center justify-between mx-auto">
                         <Link
