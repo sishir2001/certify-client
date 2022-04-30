@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import certIcon from "../assets/certificate.svg";
+import verifyIcon from "../assets/verified-user.svg";
 
 class Landing extends React.Component {
     render() {
         return (
-            <div class="p-4 pt-10 lg:pt-40 w-screen h-full">
+            <div class="p-4 pt-10 lg:pt-40 w-screen">
                 <div class="text-center">
                     <h1 class="text-black leading-light text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tighter">
                         <span className="landingTitleClass">Grab</span>,
