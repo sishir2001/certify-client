@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import certIcon from "../assets/certificate.svg";
-import verifyIcon from "../assets/verified-user.svg";
+// TODO : Work around the icons for the buttons
+// import certIcon from "../assets/certificate.svg";
+// import verifyIcon from "../assets/verified-user.svg";
 
 class Landing extends React.Component {
     render() {
@@ -25,12 +26,12 @@ class Landing extends React.Component {
                         QR-code for verification purposes.
                     </p>
                     <div class="py-10 md:flex justify-center">
-                        <div class="bg-orange-500 p-6 m-4 text-white rounded-lg hover:bg-orange-400 md:w-80 md:text-xl">
+                        <div class="transition duration-150 ease-in-out bg-orange-500 p-6 m-4 text-white rounded-lg hover:bg-orange-400 md:w-80 md:text-xl">
                             <Link to="/getCertificates">
                                 Grab My Certificate
                             </Link>
                         </div>
-                        <div class="bg-orange-100 p-6 m-4 text-orange-700 rounded-lg hover:bg-orange-200 md:w-80 md:text-xl">
+                        <div class="transition duration-150 ease-in-out bg-orange-100 p-6 m-4 text-orange-700 rounded-lg hover:bg-orange-200 md:w-80 md:text-xl">
                             <Link to="/verifyCertificates">
                                 Verify My Certificate
                             </Link>

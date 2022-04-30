@@ -13,65 +13,54 @@ class GetCert extends React.Component {
                         onSubmit={this.onFetch}
                     >
                         <div class="flex flex-col mb-4 md:w-full">
-                            <label
-                                class="mb-2 uppercase tracking-wide font-bold text-lg text-grey-darkest"
-                                for="first_name"
-                            >
-                                First Name
+                            <label class="formLabelClass" for="name">
+                                Name
                             </label>
                             <input
-                                class="border py-2 px-3 text-grey-darkest md:mr-2"
                                 type="text"
-                                name="first_name"
-                                id="first_name"
+                                name="name"
+                                id="name"
+                                placeholder="John Doe"
+                                class="formInputClass"
                             />
                         </div>
                         <div class="flex flex-col mb-4 md:w-full">
-                            <label
-                                class="mb-2 uppercase tracking-wide font-bold text-lg text-grey-darkest"
-                                for="first_name"
-                            >
-                                Last Name
+                            <label class="formLabelClass" for="university">
+                                University
                             </label>
                             <input
-                                class="border py-2 px-3 text-grey-darkest md:mr-2"
                                 type="text"
-                                name="first_name"
-                                id="first_name"
+                                name="university"
+                                id="university"
+                                placeholder="BML Munjal University"
+                                class="formInputClass"
                             />
                         </div>
                         <div class="flex flex-col mb-4 md:w-full">
-                            <label
-                                class="mb-2 uppercase font-bold text-lg text-grey-darkest"
-                                for="email"
-                            >
-                                Email
+                            <label class="formLabelClass" for="event_code">
+                                Event Code
                             </label>
                             <input
-                                class="border py-2 px-3 text-grey-darkest"
-                                type="email"
-                                name="email"
-                                id="email"
+                                type="text"
+                                name="event_code"
+                                id="eventCode"
+                                placeholder="U_1223432"
+                                class="formInputClass"
                             />
                         </div>
                         <div class="flex flex-col mb-6 md:w-full">
-                            <label
-                                class="mb-2 uppercase font-bold text-lg text-grey-darkest"
-                                for="password"
-                            >
-                                Password
+                            <label class="formLabelClass" for="participant_id">
+                                Participant ID
                             </label>
                             <input
-                                class="border py-2 px-3 text-grey-darkest"
-                                type="password"
-                                name="password"
-                                id="password"
+                                type="text"
+                                name="participant_id"
+                                id="participantCode"
+                                placeholder="P_1223432"
+                                class="formInputClass"
                             />
                         </div>
-                        <button
-                            class="block bg-orange-500 hover:bg-orange-600 text-white uppercase text-lg mx-auto p-4 rounded-2xl"
-                            type="submit"
-                        >
+                        <button class="orangeButton" type="submit">
                             Fetch
                         </button>
                     </form>
@@ -85,8 +74,8 @@ class GetCert extends React.Component {
             <div className="my-10 pt-20">
                 <h1 class="block w-full text-center text-grey-darkest mb-6 text-4xl tracking-tight">
                     Please provide your details for{" "}
-                    <span className="text-orange-500 uppercase">fetch</span> your
-                    certificate .
+                    <span className="text-orange-500 uppercase">fetch</span>{" "}
+                    your certificate .
                 </h1>
                 {this.renderFetchForm()}
             </div>
