@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-orange-50;
+    }
+    a {
+        @apply hover:text-orange-600;
+    }
+}
+
+@layer components {
+    .headerItemClass {
+        @apply block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-orange-300 md:hover:bg-transparent md:border-0 md:hover:text-orange-600 md:p-0 dark:text-gray-400 dark:hover:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent;
+    }
+    .headerFocusItemClass {
+        @apply block py-2 pl-3 pr-4 text-white bg-orange-600 hover:text-white rounded md:bg-transparent md:text-orange-600 md:hover:text-orange-600 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent;
+    }
+    .headerDropdownItemClass {
+        @apply block px-4 py-2 hover:bg-orange-300 dark:hover:bg-gray-600 dark:hover:text-white;
+    }
+    .headerDropdownItemClass2 {
+        @apply block px-4 py-2 text-sm text-gray-700 hover:bg-orange-300 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white;
+    }
+}
