@@ -39,4 +39,7 @@
     .orangeButton {
         @apply text-center transition duration-150 ease-in-out bg-orange-500 shadow-lg hover:bg-orange-600 text-white uppercase text-lg mx-auto py-4 px-20 rounded-xl;
     }
+    .whiteButton {
+        @apply text-center transition duration-150 ease-in-out bg-white shadow-lg hover:bg-orange-200 text-orange-500 uppercase text-base mx-auto py-2 px-8 rounded-2xl;
+    }
 }

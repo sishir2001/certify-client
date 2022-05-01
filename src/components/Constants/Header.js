@@ -156,7 +156,7 @@ class Header extends React.Component {
                                         to="/getCertificates"
                                         className={
                                             componentRoute ===
-                                            "/getCertificates"
+                                            "/getCertificates" || componentRoute === "/getCertificates/found" || componentRoute === "/getCertificates/notfound"
                                                 ? "headerFocusItemClass"
                                                 : "headerItemClass"
                                         }
