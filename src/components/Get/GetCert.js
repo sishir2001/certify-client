@@ -11,17 +11,36 @@ class GetCert extends React.Component {
         this.props.fetchCert(formValues);
         console.log(`Fetch Form Submitted`);
     };
+    renderErrorClass = (meta) => {
+        if (meta.touched && meta.error) {
+            return "formInputInvalidClass";
+        }
+        return "formInputClass";
+    };
+    renderError = (meta) => {
+        if (meta.touched && meta.error) {
+            return <p className="text-sm text-red-500">{meta.error}</p>;
+        }
+    };
+
     // rendering the input element
     renderInput = (formProps) => {
+        console.log(formProps.meta);
         return (
-            <input
-                {...formProps.input}
-                type="text"
-                placeholder={formProps.placeholder}
-                className={formProps.withClass}
-                onChange={formProps.input.onChange}
-                value={formProps.input.value}
-            />
+            <div class="flex flex-col mb-4 md:w-full">
+                <label class="formLabelClass" for="name">
+                    {formProps.label}
+                </label>
+                <input
+                    {...formProps.input}
+                    type="text"
+                    placeholder={formProps.placeholder}
+                    className={this.renderErrorClass(formProps.meta)}
+                    onChange={formProps.input.onChange}
+                    value={formProps.input.value}
+                />
+                {this.renderError(formProps.meta)}
+            </div>
         );
     };
 
@@ -33,54 +52,34 @@ class GetCert extends React.Component {
                         class="mb-4 md:flex md:flex-wrap md:justify-between"
                         onSubmit={this.props.handleSubmit(this.onFetch)}
                     >
-                        <div class="flex flex-col mb-4 md:w-full">
-                            <label class="formLabelClass" for="name">
-                                Name
-                            </label>
-                            <Field
-                                name="name"
-                                type="text"
-                                placeholder="John Doe"
-                                withClass="formInputClass"
-                                component={this.renderInput}
-                            />
-                        </div>
-                        <div class="flex flex-col mb-4 md:w-full">
-                            <label class="formLabelClass" for="university">
-                                University
-                            </label>
-                            <Field
-                                name="university"
-                                type="text"
-                                placeholder="BML Munjal University"
-                                withClass="formInputClass"
-                                component={this.renderInput}
-                            />
-                        </div>
-                        <div class="flex flex-col mb-4 md:w-full">
-                            <label class="formLabelClass" for="event_code">
-                                Event Code
-                            </label>
-                            <Field
-                                name="event_code"
-                                type="text"
-                                placeholder="U_123243"
-                                withClass="formInputClass"
-                                component={this.renderInput}
-                            />
-                        </div>
-                        <div class="flex flex-col mb-6 md:w-full">
-                            <label class="formLabelClass" for="participant_id">
-                                Participant ID
-                            </label>
-                            <Field
-                                name="participant_id"
-                                type="text"
-                                placeholder="P_123314`"
-                                withClass="formInputClass"
-                                component={this.renderInput}
-                            />
-                        </div>
+                        <Field
+                            label="Name"
+                            name="name"
+                            type="text"
+                            placeholder="John Doe"
+                            component={this.renderInput}
+                        />
+                        <Field
+                            label="University"
+                            name="university"
+                            type="text"
+                            placeholder="BML Munjal University"
+                            component={this.renderInput}
+                        />
+                        <Field
+                            label="Event Code"
+                            name="event_code"
+                            type="text"
+                            placeholder="U_123243"
+                            component={this.renderInput}
+                        />
+                        <Field
+                            label="Participant ID"
+                            name="participant_id"
+                            type="text"
+                            placeholder="P_123314`"
+                            component={this.renderInput}
+                        />
                         <button class="orangeButton group" type="submit">
                             <svg
                                 role="status"
@@ -120,9 +119,28 @@ class GetCert extends React.Component {
     }
 }
 
+// !validation of the fields in the form
+const validate = (formValues) => {
+    const errors = {};
+    if (!formValues.name) {
+        errors.name = "Name Required";
+    }
+    if (!formValues.university) {
+        errors.university = "University Name Required";
+    }
+    if (!formValues.event_code) {
+        errors.event_code = "University Code Required";
+    }
+    if (!formValues.participant_id) {
+        errors.participant_id = "Participant ID Required";
+    }
+    return errors;
+};
+
 export default connect(null, { fetchCert })(
     reduxForm({
         form: "GetCert",
+        validate,
     })(GetCert)
 );
 
