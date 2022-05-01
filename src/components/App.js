@@ -1,18 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
-import Landing from "./Landing";
-import Header from "./Header";
-import Footer from "./Footer";
-import GetCert from "./GetCert";
-import VerifyCert from "./VerifyCert";
-import GenerateCert from "./GenerateCert";
+import history from "../history";
+import Landing from "./Constants/Landing";
+import Header from "./Constants/Header";
+import GetCert from "./Get/GetCert";
+import VerifyCert from "./Verify/VerifyCert";
+import GenerateCert from "./Generate/GenerateCert";
 import About from "./About";
+import CertFound from "./Get/CertFound";
+import CertNotFound from "./Get/CertNotFound";
 class App extends React.Component {
     render() {
         return (
             <div className="">
-                <Router>
+                <Router history={history}>
                     <div>
                         <Header />
                         <Switch>
@@ -21,6 +23,16 @@ class App extends React.Component {
                                 path="/getCertificates"
                                 exact
                                 component={GetCert}
+                            />
+                            <Route
+                                path="/getCertificates/found"
+                                exact
+                                component={CertFound}
+                            />
+                            <Route
+                                path="/getCertificates/notfound"
+                                exact
+                                component={CertNotFound}
                             />
                             <Route
                                 path="/verifyCertificates"

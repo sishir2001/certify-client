@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { withRouter } from "react-router-dom";
 
-import { signedOut } from "../actions";
+import { signedOut } from "../../actions";
 
 class Header extends React.Component {
     signOut = () => {
@@ -42,7 +42,7 @@ class Header extends React.Component {
 
                         <div
                             id="dropdownNavbar"
-                            className="z-10 hidden bg-orange-100 divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+                            className="z-10 hidden bg-amber-50 divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
                             style={{
                                 position: "absolute",
                                 inset: "auto auto 0px 0px",
