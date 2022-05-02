@@ -67,7 +67,7 @@ export const verifyCert = (formValues) => {
         // const response = await cert.get("/fetchcertificate", {
         //     params: formValues,
         // });
-        // console.log(response);
+        // console.log(`Await Response : ${response}`);
 
         dispatch({
             type: VERIFY_CERT,
