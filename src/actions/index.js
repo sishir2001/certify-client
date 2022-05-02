@@ -13,12 +13,16 @@ export const signedOut = () => {
 export const signedIn = (userId, userName) => {
     // @param userId is required to identify the user Logged in and storing it in a central state using redux
     // * action return objects which redux takes of to send to the reducers
-    return {
-        type: SIGNED_IN,
-        payload: {
-            userId: userId,
-            userName: userName,
-        },
+    // TODO:call the login api , store the errors in the redux state, so that when login is rendered it display's error message
+    return async (dispatch, getState) => {
+        dispatch({
+            type: SIGNED_IN,
+            payload: {
+                userId: userId,
+                userName: userName,
+            },
+        });
+        history.push("/generateCertificates");
     };
 };
 
