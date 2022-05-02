@@ -190,7 +190,11 @@ class Header extends React.Component {
                                         to="/generateCertificates"
                                         className={
                                             componentRoute ===
-                                            "/generateCertificates"
+                                                "/generateCertificates" ||
+                                            componentRoute === "/auth/login" ||
+                                            componentRoute === "/auth/signu" ||
+                                            componentRoute ===
+                                                "/auth/requestReferral"
                                                 ? "headerFocusItemClass"
                                                 : "headerItemClass"
                                         }

@@ -3,7 +3,7 @@
 import { SIGNED_OUT, SIGNED_IN } from "../actions/types";
 
 const INITIAL_STATE = {
-    isSignedIn: true, // these are the componenets of authState
+    isSignedIn: false, // these are the componenets of authState
     userId: "checkid",
     userName: "Sishir",
 };

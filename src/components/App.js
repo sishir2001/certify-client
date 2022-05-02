@@ -11,6 +11,9 @@ import About from "./About";
 import CertFound from "./Get/CertFound";
 import CertNotFound from "./Get/CertNotFound";
 import CertStatus from "./Verify/CertStatus";
+import Login from "./auth/Login";
+import RequestReferral from "./auth/RequestReferral";
+import SignUp from "./auth/SignUp";
 class App extends React.Component {
     render() {
         return (
@@ -49,6 +52,17 @@ class App extends React.Component {
                                 path="/generateCertificates"
                                 exact
                                 component={GenerateCert}
+                            />
+                            <Route path="/auth/login" exact component={Login} />
+                            <Route
+                                path="/auth/signup"
+                                exact
+                                component={SignUp}
+                            />
+                            <Route
+                                path="/auth/requestReferral"
+                                exact
+                                component={RequestReferral}
                             />
                             <Route path="/about" exact component={About} />
                         </Switch>
