@@ -10,6 +10,7 @@ import GenerateCert from "./Generate/GenerateCert";
 import About from "./About";
 import CertFound from "./Get/CertFound";
 import CertNotFound from "./Get/CertNotFound";
+import CertStatus from "./Verify/CertStatus";
 class App extends React.Component {
     render() {
         return (
@@ -38,6 +39,11 @@ class App extends React.Component {
                                 path="/verifyCertificates"
                                 exact
                                 component={VerifyCert}
+                            />
+                            <Route
+                                path="/verifyCertificates/certStatus"
+                                exact
+                                component={CertStatus}
                             />
                             <Route
                                 path="/generateCertificates"

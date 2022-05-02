@@ -7,9 +7,12 @@ class GetCert extends React.Component {
     // ? function is called when the fetch button is clicked
     onFetch = (formValues) => {
         // TODO : write a GET request to API with these form details
+
         console.log(formValues);
-        this.props.fetchCert(formValues);
-        console.log(`Fetch Form Submitted`);
+        if (formValues) {
+            this.props.fetchCert(formValues);
+            console.log(`Fetch Form Submitted`);
+        }
     };
     renderErrorClass = (meta) => {
         if (meta.touched && meta.error) {
@@ -25,7 +28,6 @@ class GetCert extends React.Component {
 
     // rendering the input element
     renderInput = (formProps) => {
-        console.log(formProps.meta);
         return (
             <div class="flex flex-col mb-4 md:w-full">
                 <label class="formLabelClass" for="name">
