@@ -1,7 +1,14 @@
 // ! all actions creators should be here
-import { SIGNED_OUT, SIGNED_IN, FETCH_CERT, VERIFY_CERT } from "./types";
+import {
+    SIGNED_OUT,
+    SIGNED_IN,
+    SIGNED_UP,
+    FETCH_CERT,
+    VERIFY_CERT,
+} from "./types";
 import history from "../history";
 import cert from "../apis/cert";
+import { formValues } from "redux-form";
 
 export const signedOut = () => {
     // * action return objects which redux takes of to send to the reducers
@@ -10,19 +17,28 @@ export const signedOut = () => {
     };
 };
 
-export const signedIn = (userId, userName) => {
+export const signedIn = (formValues) => {
     // @param userId is required to identify the user Logged in and storing it in a central state using redux
     // * action return objects which redux takes of to send to the reducers
     // TODO:call the login api , store the errors in the redux state, so that when login is rendered it display's error message
     return async (dispatch, getState) => {
         dispatch({
             type: SIGNED_IN,
-            payload: {
-                userId: userId,
-                userName: userName,
-            },
+            payload: formValues,
         });
         history.push("/generateCertificates");
+    };
+};
+
+export const signedUp = (formValues) => {
+    // @param userId is required to identify the user Logged in and storing it in a central state using redux
+    // * action return objects which redux takes of to send to the reducers
+    // TODO:call the login api , store the errors in the redux state, so that when login is rendered it display's error message
+    return async (dispatch, getState) => {
+        dispatch({
+            type: SIGNED_UP,
+        });
+        history.push("/auth/login");
     };
 };
 

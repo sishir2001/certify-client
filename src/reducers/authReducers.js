@@ -16,8 +16,8 @@ export const authReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isSignedIn: true,
-                userId: action.payload.userId,
-                userName: action.payload.userName,
+                // userId: action.payload.userId,
+                userName: action.payload.username,
             };
 
         case SIGNED_OUT:

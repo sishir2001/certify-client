@@ -192,7 +192,7 @@ class Header extends React.Component {
                                             componentRoute ===
                                                 "/generateCertificates" ||
                                             componentRoute === "/auth/login" ||
-                                            componentRoute === "/auth/signu" ||
+                                            componentRoute === "/auth/signup" ||
                                             componentRoute ===
                                                 "/auth/requestReferral"
                                                 ? "headerFocusItemClass"

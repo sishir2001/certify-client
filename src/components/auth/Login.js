@@ -2,6 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { signedIn } from "../../actions";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
     // ? function is called when the fetch button is clicked
@@ -11,7 +12,7 @@ class Login extends React.Component {
         console.log(formValues);
         if (formValues) {
             // TODO : call the action creators for SIGNED_IN
-            this.props.signedIn("CheckId", "Sishir");
+            this.props.signedIn(formValues);
             console.log(`Fetch Form Submitted`);
         }
     };
@@ -92,6 +93,13 @@ class Login extends React.Component {
                             Login
                         </button>
                     </form>
+                    <h2 className="text-center text-gray-100 tracking-tight">
+                        Don't have an account ?{" "}
+                        <span className="text-white font-bold">
+                            {" "}
+                            <Link to="/auth/signup">Sign Up</Link>
+                        </span>
+                    </h2>
                 </div>
             </div>
         );
@@ -100,12 +108,12 @@ class Login extends React.Component {
     render() {
         return (
             <div className="my-10 pt-20">
-                <h1 class="block w-full text-center text-grey-darkest mb-6 text-4xl tracking-tight">
-                    Please provide your details for{" "}
-                    <span className="text-orange-500 uppercase">fetch</span>{" "}
-                    your certificate .
-                </h1>
                 {this.renderFetchForm()}
+                <h1 class="block w-full text-center text-grey-darkest mt-12 text-xl tracking-tight">
+                    Page is accessed only by people who have{" "}
+                    <span className="text-orange-500 uppercase">Admin</span>{" "}
+                    rights.Else ask your organization admin for one.
+                </h1>
             </div>
         );
     }
@@ -114,17 +122,11 @@ class Login extends React.Component {
 // !validation of the fields in the form
 const validate = (formValues) => {
     const errors = {};
-    if (!formValues.name) {
-        errors.name = "Name Required";
+    if (!formValues.username) {
+        errors.username = "Username Required";
     }
-    if (!formValues.university) {
-        errors.university = "University Name Required";
-    }
-    if (!formValues.event_code) {
-        errors.event_code = "University Code Required";
-    }
-    if (!formValues.participant_id) {
-        errors.participant_id = "Participant ID Required";
+    if (!formValues.password) {
+        errors.password = "password Required";
     }
     return errors;
 };
