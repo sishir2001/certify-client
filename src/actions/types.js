@@ -3,6 +3,8 @@ export const SIGNED_IN_ERROR = "SIGNED_IN_ERROR";
 export const SIGNED_OUT = "SIGNED_OUT";
 export const SIGNED_UP = "SIGNED_UP";
 export const SIGNED_UP_ERROR = "SIGNED_UP_ERROR";
+// ? for form submittion
 export const REQUESTED_REFERRAL = "REQUESTED_REFERRAL";
+export const REQUESTED_REFERRAL_ERROR = "REQUESTED_REFERRAL_ERROR";
 export const FETCH_CERT = "FETCH_CERT";
 export const VERIFY_CERT = "VERIFY_CERT";

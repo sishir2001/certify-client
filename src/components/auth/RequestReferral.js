@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { signedUp } from "../../actions";
+import { requestedReferral } from "../../actions";
 import { Link } from "react-router-dom";
 
 class RequestReferral extends React.Component {
@@ -12,8 +12,8 @@ class RequestReferral extends React.Component {
         console.log(formValues);
         if (formValues && formValues.confirmPassword === formValues.password) {
             // TODO : call the action creators for SIGNED_IN
-            this.props.signedUp(formValues);
-            console.log(`SignedUp Form Submitted`);
+            this.props.requestedReferral(formValues);
+            console.log(`request Referral Form Submitted`);
         }
     };
     renderErrorClass = (meta) => {
@@ -92,7 +92,12 @@ class RequestReferral extends React.Component {
                         >
                             <svg
                                 role="status"
-                                className="hidden group-focus:inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+                                className={`hidden ${
+                                    !this.props.referral_code &&
+                                    !this.props.referral_code_error
+                                        ? `group-focus:inline`
+                                        : ``
+                                }  w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300`}
                                 viewBox="0 0 100 101"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -110,10 +115,10 @@ class RequestReferral extends React.Component {
                         </button>
                     </form>
                     <h2 className="text-center text-gray-100 tracking-tight">
-                        Already have an account ?{" "}
+                        Already have code ?{" "}
                         <span className="text-white font-bold">
                             {" "}
-                            <Link to="/auth/login">Login</Link>
+                            <Link to="/auth/signup">SignUp</Link>
                         </span>
                     </h2>
                 </div>
@@ -122,20 +127,28 @@ class RequestReferral extends React.Component {
     };
 
     render() {
+        console.log(`referal_code : ${this.props.referral_code}`);
+        console.log(`referal_code_error : ${this.props.referral_code_error}`);
+        let aboveContent = `Referral Code : ${this.props.referral_code}`;
+        let aboveContentClass =
+            "block w-full text-center text-gray-600 mt-5 text-xl tracking-tight";
+        if (!this.props.referral_code && !this.props.referral_code_error) {
+            aboveContentClass = "hidden";
+        } else if (!this.props.referral_code) {
+            // !some error occured
+            aboveContent = this.props.referral_code_error;
+        } else if (!this.props.referral_code_error) {
+            // * referral code is generated
+            aboveContent = `The referral code : ${this.props.referral_code}`;
+        }
+
         return (
-            <div className="my-10 pt-20">
+            <div className="my-2 pt-10">
+                <h1 class={aboveContentClass}>{aboveContent}</h1>
                 {this.renderFetchForm()}
-                <h1 class="block w-full text-center text-grey-darkest mt-12 text-xl tracking-tight">
+                <h1 class="block w-full text-center text-gray-600 mt-5 text-xl tracking-tight">
                     You can only signup if you are invited by your team to
-                    generate certificates via referral code .
-                </h1>
-                <h1 class="block w-full text-center text-grey-darkest mt-1 text-xl tracking-tight">
-                    New to certify?
-                    <span className="text-orange-500">
-                        <Link to="/auth/requestReferral">
-                            Request a referral code
-                        </Link>
-                    </span>
+                    generate certificates via referral code
                 </h1>
             </div>
         );
@@ -160,7 +173,14 @@ const validate = (formValues) => {
     return errors;
 };
 
-export default connect(null, { signedUp })(
+const mapStateToProps = (state) => {
+    return {
+        referral_code: state.cert.referral_code,
+        referral_code_error: state.cert.referral_code_error,
+    };
+};
+
+export default connect(mapStateToProps, { requestedReferral })(
     reduxForm({
         form: "RequestReferral",
         validate,

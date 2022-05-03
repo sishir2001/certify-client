@@ -8,6 +8,7 @@ import {
     REQUESTED_REFERRAL,
     SIGNED_IN_ERROR,
     SIGNED_UP_ERROR,
+    REQUESTED_REFERRAL_ERROR,
 } from "./types";
 import history from "../history";
 import cert from "../apis/cert";
@@ -109,18 +110,34 @@ export const requestedReferral = (formValues) => {
     return async (dispatch, getState) => {
         // TODO:call the requestReferral api , store the errors in the redux state, so that when login is rendered it display's error message
 
-        const response = await cert.get("/requestreferral", {
-            params: formValues,
-        });
+        try {
+            console.log("Inside try of requestedReferral");
+            const response = await cert.get("/requestreferral", {
+                params: formValues,
+            });
 
-        console.log(`request referral response ${response}`);
-
-        // ? use the payload to convey the referral_code
-        dispatch({
-            type: REQUESTED_REFERRAL,
-        });
-        // TODO : redirect to a new page / Display a toast with a message .
-        history.push("/auth/referralDisplay");
+            console.log(response);
+            if (response.data.referral_code === null) {
+                console.log("inside null");
+                dispatch({
+                    type: REQUESTED_REFERRAL_ERROR,
+                    payload: "Sorry , could not generate referral code",
+                });
+            } else {
+                dispatch({
+                    type: REQUESTED_REFERRAL,
+                    payload: response.data.referral_code,
+                });
+            }
+        } catch (error) {
+            console.error(`Error occured while signing up `);
+            console.log(error);
+            dispatch({
+                type: REQUESTED_REFERRAL_ERROR,
+                payload: "Server Error while requesting referral_code",
+            });
+        }
+        // history.push("/auth/referralDisplay");
     };
 };
 
