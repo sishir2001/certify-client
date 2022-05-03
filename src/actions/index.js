@@ -33,8 +33,8 @@ export const signedIn = (formValues) => {
 export const signedUp = (formValues) => {
     // @param userId is required to identify the user Logged in and storing it in a central state using redux
     // * action return objects which redux takes of to send to the reducers
-    // TODO:call the login api , store the errors in the redux state, so that when login is rendered it display's error message
     return async (dispatch, getState) => {
+        // TODO:call the login api , store the errors in the redux state, so that when login is rendered it display's error message
         dispatch({
             type: SIGNED_UP,
         });
@@ -54,10 +54,10 @@ export const fetchCert = (formValues) => {
         // dispatch an object with an arrays of stream details to store it in redux
 
         // ! asynchronous request to api
-        // const response = await cert.get("/fetchcertificate", {
-        //     params: formValues,
-        // });
-        // console.log(response);
+        const response = await cert.get("/fetchcertificate", {
+            params: formValues,
+        });
+        console.log(response);
 
         dispatch({
             type: FETCH_CERT,

@@ -1,18 +1,19 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { signedIn } from "../../actions";
+import { signedUp } from "../../actions";
+import { Link } from "react-router-dom";
 
 class SignUp extends React.Component {
     // ? function is called when the fetch button is clicked
-    onLogin = (formValues) => {
+    onSignUp = (formValues) => {
         // TODO : write a GET request to API with these form details
 
         console.log(formValues);
-        if (formValues) {
+        if (formValues && formValues.confirmPassword === formValues.password) {
             // TODO : call the action creators for SIGNED_IN
-            this.props.signedIn(formValues);
-            console.log(`Fetch Form Submitted`);
+            this.props.signedUp(formValues);
+            console.log(`SignedUp Form Submitted`);
         }
     };
     renderErrorClass = (meta) => {
@@ -53,8 +54,15 @@ class SignUp extends React.Component {
                 <div class="w-full bg-orange-500 rounded shadow-md p-8 m-4 md:max-w-sm md:mx-auto">
                     <form
                         class="mb-4 md:flex md:flex-wrap md:justify-between"
-                        onSubmit={this.props.handleSubmit(this.onLogin)}
+                        onSubmit={this.props.handleSubmit(this.onSignUp)}
                     >
+                        <Field
+                            label="Name"
+                            name="name"
+                            type="text"
+                            placeholder="John Doe"
+                            component={this.renderInput}
+                        />
                         <Field
                             label="Username"
                             name="username"
@@ -67,6 +75,20 @@ class SignUp extends React.Component {
                             name="password"
                             type="password"
                             placeholder="password"
+                            component={this.renderInput}
+                        />
+                        <Field
+                            label="Re-Enter Password"
+                            name="confirmPassword"
+                            type="password"
+                            placeholder="password"
+                            component={this.renderInput}
+                        />
+                        <Field
+                            label="Referral Code"
+                            name="referral_code"
+                            type="text"
+                            placeholder="John_Doe"
                             component={this.renderInput}
                         />
                         <button
@@ -92,6 +114,13 @@ class SignUp extends React.Component {
                             SignUp
                         </button>
                     </form>
+                    <h2 className="text-center text-gray-100 tracking-tight">
+                        Already have an account ?{" "}
+                        <span className="text-white font-bold">
+                            {" "}
+                            <Link to="/auth/login">Login</Link>
+                        </span>
+                    </h2>
                 </div>
             </div>
         );
@@ -100,11 +129,19 @@ class SignUp extends React.Component {
     render() {
         return (
             <div className="my-10 pt-20">
-                <h1 class="block w-full text-center text-grey-darkest mb-6 text-4xl tracking-tight">
-                    Page is accessed only by{" "}
-                    <span className="text-orange-500 uppercase">Admin</span>{" "}
-                </h1>
                 {this.renderFetchForm()}
+                <h1 class="block w-full text-center text-grey-darkest mt-12 text-xl tracking-tight">
+                    You can only signup if you are invited by your team to
+                    generate certificates via referral code .
+                </h1>
+                <h1 class="block w-full text-center text-grey-darkest mt-1 text-xl tracking-tight">
+                    New to certify?
+                    <span className="text-orange-500">
+                        <Link to="/auth/requestReferral">
+                            Request a referral code
+                        </Link>
+                    </span>
+                </h1>
             </div>
         );
     }
@@ -113,16 +150,28 @@ class SignUp extends React.Component {
 // !validation of the fields in the form
 const validate = (formValues) => {
     const errors = {};
+    if (!formValues.name) {
+        errors.name = "Name Required";
+    }
     if (!formValues.username) {
         errors.username = "Username Required";
     }
+    if (!formValues.referral_code) {
+        errors.referral_code = "Referral Code Required";
+    }
     if (!formValues.password) {
-        errors.password = "password Required";
+        errors.password = "Password Required";
+    }
+    if (!formValues.confirmPassword) {
+        errors.confirmPassword = "Password Required";
+    }
+    if (formValues.confirmPassword !== formValues.password) {
+        errors.confirmPassword = "Password should match";
     }
     return errors;
 };
 
-export default connect(null, { signedIn })(
+export default connect(null, { signedUp })(
     reduxForm({
         form: "SignUp",
         validate,

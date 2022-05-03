@@ -13,7 +13,7 @@ class Login extends React.Component {
         if (formValues) {
             // TODO : call the action creators for SIGNED_IN
             this.props.signedIn(formValues);
-            console.log(`Fetch Form Submitted`);
+            console.log(`Login Form Submitted`);
         }
     };
     renderErrorClass = (meta) => {
