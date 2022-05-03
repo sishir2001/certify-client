@@ -14,7 +14,10 @@ import CertStatus from "./Verify/CertStatus";
 import Login from "./auth/Login";
 import RequestReferral from "./auth/RequestReferral";
 import SignUp from "./auth/SignUp";
-import ReferralDisplay from "./auth/ReferralDisplay"
+import ReferralDisplay from "./auth/ReferralDisplay";
+import AddEvents from "./Generate/AddEvents";
+import CertDashboard from "./Generate/CertDashboard";
+import AddCertificates from "./Generate/AddCertificates";
 class App extends React.Component {
     render() {
         return (
@@ -50,9 +53,24 @@ class App extends React.Component {
                                 component={CertStatus}
                             />
                             <Route
-                                path="/generateCertificates"
+                                path="/generateCertificates/"
                                 exact
                                 component={GenerateCert}
+                            />
+                            <Route
+                                path="/generateCertificates/addEvents"
+                                exact
+                                component={AddEvents}
+                            />
+                            <Route
+                                path="/generateCertificates/certDashboard"
+                                exact
+                                component={CertDashboard}
+                            />
+                            <Route
+                                path="/generateCertificates/addCert/:eventName/:event_code"
+                                exact
+                                component={AddCertificates}
                             />
                             <Route path="/auth/login" exact component={Login} />
                             <Route

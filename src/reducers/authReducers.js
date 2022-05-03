@@ -12,6 +12,7 @@ const INITIAL_STATE = {
     isSignedIn: false, // these are the componenets of authState
     // userId: "checkid",
     userName: null,
+    password: null,
     errorMessage: null,
     isSignedUpSuccess: null,
     signUpError: null,
@@ -25,6 +26,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isSignedIn: true,
+                password: action.payload.password,
                 // userId: action.payload.userId,
                 userName: action.payload.username,
                 errorMessage: null,
@@ -37,6 +39,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
                 isSignedIn: false,
                 // userId: null,
                 userName: null,
+                password:null,
                 errorMessage: null,
             };
 
@@ -47,6 +50,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
                 isSignedIn: false,
                 // userId: null,
                 userName: null,
+                password: null,
                 errorMessage: action.payload,
             };
         case SIGNED_UP:

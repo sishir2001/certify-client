@@ -9,6 +9,7 @@ import {
     SIGNED_IN_ERROR,
     SIGNED_UP_ERROR,
     REQUESTED_REFERRAL_ERROR,
+    FETCH_EVENTS,
 } from "./types";
 import history from "../history";
 import cert from "../apis/cert";
@@ -46,6 +47,7 @@ export const signedIn = ({ username, password }) => {
                     type: SIGNED_IN,
                     payload: {
                         username,
+                        password,
                     },
                 });
             }
@@ -196,5 +198,28 @@ export const verifyCert = (formValues) => {
         // TODO : programmatic navigation to root route after the server responds
         history.push("/verifyCertificates/certStatus");
         // history.push('/getCertificates/notfound');
+    };
+};
+
+export const fetch_events = ({ username, password }) => {
+    // @username:username of the logged in user
+    // @password:password of the logged in user
+    console.log("Fetching the events");
+    return async (dispatch, getState) => {
+        // TODO : fetch the events
+        const response = await cert.get("/getevents", {
+            headers: {
+                username: username,
+                password: password,
+            },
+        });
+
+        console.log(`Response of fetching the list of events`);
+        console.log(response);
+
+        // TODO : add payload to dispatch 
+        dispatch({
+            type:FETCH_EVENTS,
+        });
     };
 };
