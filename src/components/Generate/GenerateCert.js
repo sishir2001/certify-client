@@ -31,7 +31,7 @@ class GenerateCert extends React.Component {
                     ID:1322415342
                 </p>
                 <Link
-                    to="/generateCertificates/addCert/check/11333"
+                    to="/generateCertificates/certDashboard/check/11333"
                     className=""
                 >
                     <button
@@ -57,7 +57,7 @@ class GenerateCert extends React.Component {
                 </Link>
             </div>
         );
-    }
+    };
 
     render() {
         return (

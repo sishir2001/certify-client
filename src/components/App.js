@@ -63,7 +63,7 @@ class App extends React.Component {
                                 component={AddEvents}
                             />
                             <Route
-                                path="/generateCertificates/certDashboard"
+                                path="/generateCertificates/certDashboard/:eventName/:event_code"
                                 exact
                                 component={CertDashboard}
                             />
