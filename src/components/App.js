@@ -14,6 +14,7 @@ import CertStatus from "./Verify/CertStatus";
 import Login from "./auth/Login";
 import RequestReferral from "./auth/RequestReferral";
 import SignUp from "./auth/SignUp";
+import ReferralDisplay from "./auth/ReferralDisplay"
 class App extends React.Component {
     render() {
         return (
@@ -63,6 +64,11 @@ class App extends React.Component {
                                 path="/auth/requestReferral"
                                 exact
                                 component={RequestReferral}
+                            />
+                            <Route
+                                path="/auth/referralDisplay"
+                                exact
+                                component={ReferralDisplay}
                             />
                             <Route path="/about" exact component={About} />
                         </Switch>

@@ -49,6 +49,10 @@ class Login extends React.Component {
     };
 
     renderFetchForm = () => {
+        // ? if null then hide the message
+        const loginErrorClass = !this.props.loginError
+            ? "hidden"
+            : "text-center text-red-100 font-semibold tracking-tight";
         return (
             <div class="flex items-center h-full w-full">
                 <div class="w-full bg-orange-500 rounded shadow-md p-8 m-4 md:max-w-sm md:mx-auto">
@@ -76,7 +80,11 @@ class Login extends React.Component {
                         >
                             <svg
                                 role="status"
-                                className="hidden group-focus:inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+                                className={`hidden ${
+                                    !this.props.loginError
+                                        ? `group-focus:inline`
+                                        : ``
+                                } w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300`}
                                 viewBox="0 0 100 101"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -100,12 +108,16 @@ class Login extends React.Component {
                             <Link to="/auth/signup">Sign Up</Link>
                         </span>
                     </h2>
+                    <h2 className={loginErrorClass}>
+                        *{this.props.loginError}*
+                    </h2>
                 </div>
             </div>
         );
     };
 
     render() {
+        console.log(`login Error : ${this.props.loginError}`);
         return (
             <div className="my-10 pt-20">
                 {this.renderFetchForm()}
@@ -131,7 +143,12 @@ const validate = (formValues) => {
     return errors;
 };
 
-export default connect(null, { signedIn })(
+const mapStateToProps = (state) => {
+    return {
+        loginError: state.auth.errorMessage,
+    };
+};
+export default connect(mapStateToProps, { signedIn })(
     reduxForm({
         form: "Login",
         validate,
