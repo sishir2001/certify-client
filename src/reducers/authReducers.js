@@ -1,12 +1,20 @@
 // ! Reducers are only for changing value of the state
 // ! components should only render data from the state
-import { SIGNED_OUT, SIGNED_IN, SIGNED_IN_ERROR } from "../actions/types";
+import {
+    SIGNED_OUT,
+    SIGNED_IN,
+    SIGNED_IN_ERROR,
+    SIGNED_UP,
+    SIGNED_UP_ERROR,
+} from "../actions/types";
 
 const INITIAL_STATE = {
     isSignedIn: false, // these are the componenets of authState
     // userId: "checkid",
     userName: null,
     errorMessage: null,
+    isSignedUpSuccess: null,
+    signUpError: null,
 };
 
 export const authReducer = (state = INITIAL_STATE, action) => {
@@ -40,6 +48,20 @@ export const authReducer = (state = INITIAL_STATE, action) => {
                 // userId: null,
                 userName: null,
                 errorMessage: action.payload,
+            };
+        case SIGNED_UP:
+            // ! modifying a object is easy than an array
+            return {
+                ...state,
+                isSignedUpSuccess: true,
+                signUpError: action.payload,
+            };
+        case SIGNED_UP_ERROR:
+            // ! modifying a object is easy than an array
+            return {
+                ...state,
+                isSignedUpSuccess: false,
+                signUpError: action.payload,
             };
         default:
             return state;

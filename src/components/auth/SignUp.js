@@ -97,7 +97,11 @@ class SignUp extends React.Component {
                         >
                             <svg
                                 role="status"
-                                className="hidden group-focus:inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+                                className={`hidden ${
+                                    this.props.isSignedUpSuccess === null
+                                        ? `group-focus:inline`
+                                        : ``
+                                } w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300`}
                                 viewBox="0 0 100 101"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -127,10 +131,24 @@ class SignUp extends React.Component {
     };
 
     render() {
+        let isSignedUpSuccessClass = "hidden";
+        if (this.props.isSignedUpSuccess === true) {
+            isSignedUpSuccessClass =
+                "pb-2 block w-full text-center text-green-500 mt-5 text-xl tracking-tight";
+        } else if (this.props.isSignedUpSuccess === false) {
+            isSignedUpSuccessClass =
+                "pb-2 block w-full text-center text-red-500 mt-5 text-xl tracking-tight";
+        }
+        console.log(`Sign Up error class : ${isSignedUpSuccessClass}`);
+        console.log(`Sign Up error message : ${this.props.signUpResponse}`);
+
         return (
-            <div className="my-10 pt-20">
+            <div className="my-2 pt-2">
+                <h1 class={isSignedUpSuccessClass}>
+                    *{this.props.signUpResponse}*
+                </h1>
                 {this.renderFetchForm()}
-                <h1 class="block w-full text-center text-grey-darkest mt-12 text-xl tracking-tight">
+                <h1 class="block w-full text-center text-grey-darkest mt-5 text-xl tracking-tight">
                     You can only signup if you are invited by your team to
                     generate certificates via referral code .
                 </h1>
@@ -171,7 +189,14 @@ const validate = (formValues) => {
     return errors;
 };
 
-export default connect(null, { signedUp })(
+const mapStateToPros = (state) => {
+    return {
+        isSignedUpSuccess: state.auth.isSignedUpSuccess,
+        signUpResponse: state.auth.signUpError,
+    };
+};
+
+export default connect(mapStateToPros, { signedUp })(
     reduxForm({
         form: "SignUp",
         validate,

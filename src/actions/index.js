@@ -7,6 +7,7 @@ import {
     VERIFY_CERT,
     REQUESTED_REFERRAL,
     SIGNED_IN_ERROR,
+    SIGNED_UP_ERROR,
 } from "./types";
 import history from "../history";
 import cert from "../apis/cert";
@@ -66,22 +67,39 @@ export const signedUp = ({ name, username, password, referral_code }) => {
     return async (dispatch, getState) => {
         // TODO:call the sign Up api , store the errors in the redux state, so that when login is rendered it display's error message
 
-        const response = await cert.get("/usersignup", {
-            headers: {
-                username,
-                password,
-            },
-            params: {
-                name,
-                referral_code,
-            },
-        });
+        try {
+            console.log("Inside try of signedUp action");
+            const response = await cert.get("/usersignup", {
+                headers: {
+                    username,
+                    password,
+                },
+                params: {
+                    name,
+                    referral_code,
+                },
+            });
 
-        console.log(`signedUp response ${response}`);
-        dispatch({
-            type: SIGNED_UP,
-        });
-        history.push("/auth/login");
+            console.log(`signedUp response ${response}`);
+
+            // ! For different reducers !
+            let type = SIGNED_UP_ERROR;
+            if (response.message === "User Succesfully Created") {
+                type = SIGNED_UP;
+            }
+            dispatch({
+                type: type,
+                payload: response.message,
+            });
+            // history.push("/auth/login");
+        } catch (error) {
+            console.error(`Error occured while signing up `);
+            console.log(error);
+            dispatch({
+                type: SIGNED_UP_ERROR,
+                payload: "Server Error while signing up",
+            });
+        }
     };
 };
 
