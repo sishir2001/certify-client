@@ -49,10 +49,6 @@ class Login extends React.Component {
     };
 
     renderFetchForm = () => {
-        // ? if null then hide the message
-        const loginErrorClass = !this.props.loginError
-            ? "hidden"
-            : "text-center text-red-100 font-semibold tracking-tight";
         return (
             <div class="flex items-center h-full w-full">
                 <div class="w-full bg-orange-500 rounded shadow-md p-8 m-4 md:max-w-sm md:mx-auto">
@@ -108,18 +104,20 @@ class Login extends React.Component {
                             <Link to="/auth/signup">Sign Up</Link>
                         </span>
                     </h2>
-                    <h2 className={loginErrorClass}>
-                        *{this.props.loginError}*
-                    </h2>
                 </div>
             </div>
         );
     };
 
     render() {
+        // ? if null then hide the message
+        const loginErrorClass = !this.props.loginError
+            ? "hidden"
+            : "text-center text-red-500 font-semibold tracking-tight text-xl";
         console.log(`login Error : ${this.props.loginError}`);
         return (
             <div className="my-10 pt-20">
+                <h2 className={loginErrorClass}>*{this.props.loginError}*</h2>
                 {this.renderFetchForm()}
                 <h1 class="block w-full text-center text-grey-darkest mt-12 text-xl tracking-tight">
                     Page is accessed only by people who have{" "}
