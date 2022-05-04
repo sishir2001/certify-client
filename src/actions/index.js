@@ -10,6 +10,8 @@ import {
     SIGNED_UP_ERROR,
     REQUESTED_REFERRAL_ERROR,
     FETCH_EVENTS,
+    ADDED_CERT,
+    FETCH_EVENTS_ERROR,
 } from "./types";
 import history from "../history";
 import cert from "../apis/cert";
@@ -36,13 +38,15 @@ export const signedIn = ({ username, password }) => {
                 },
             });
 
+            console.log(response);
             // ! Error message should be displayed .
-            if (response.message === "User Data Not Found!!!!") {
+            if (response.data.status === 400) {
                 dispatch({
                     type: SIGNED_IN_ERROR,
-                    payload: response.message,
+                    payload: response.data.message,
                 });
             } else {
+                console.log("signed in");
                 dispatch({
                     type: SIGNED_IN,
                     payload: {
@@ -50,14 +54,14 @@ export const signedIn = ({ username, password }) => {
                         password,
                     },
                 });
+                history.push("/generateCertificates");
             }
-            history.push("/generateCertificates");
         } catch (error) {
             console.error(`Error occured while logging in `);
             console.log(error);
             dispatch({
                 type: SIGNED_IN_ERROR,
-                payload: "Server Error occurred while logging in",
+                payload: error.response.data.message,
             });
             // history.push("/auth/login");
         }
@@ -206,20 +210,80 @@ export const fetch_events = ({ username, password }) => {
     // @password:password of the logged in user
     console.log("Fetching the events");
     return async (dispatch, getState) => {
-        // TODO : fetch the events
-        const response = await cert.get("/getevents", {
-            headers: {
-                username: username,
-                password: password,
-            },
-        });
+        try {
+            // TODO : fetch the events
+            const response = await cert.get("/getevents", {
+                headers: {
+                    username: username,
+                    password: password,
+                },
+            });
 
-        console.log(`Response of fetching the list of events`);
-        console.log(response);
+            console.log(`Response of fetching the list of events`);
+            console.log(response);
 
-        // TODO : add payload to dispatch 
-        dispatch({
-            type:FETCH_EVENTS,
-        });
+            // TODO : add payload to dispatch
+            // dispatching an array
+            dispatch({
+                type: FETCH_EVENTS,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.error("Error occured while fetching the events");
+            console.log(error);
+            dispatch({
+                type: FETCH_EVENTS_ERROR,
+                payload: error.response.data.message,
+            });
+        }
+    };
+};
+
+export const add_cert = ({
+    username,
+    password,
+    event_code,
+    participant_id,
+    participant_name,
+    position,
+    content,
+}) => {
+    console.log("Adding the certificates");
+    return async (dispatch, getState) => {
+        try {
+            // TODO : fetch the events
+            const response = await cert.get("/addcertificate", {
+                headers: {
+                    username: username,
+                    password: password,
+                },
+                params: {
+                    event_code,
+                    participant_id,
+                    participant_name,
+                    position,
+                    content,
+                },
+            });
+
+            console.log(`Response of adding the certificates`);
+            console.log(response);
+
+            // TODO : add payload to dispatch
+            dispatch({
+                type: ADDED_CERT,
+                payload: response.message,
+            });
+        } catch (error) {
+            console.error(
+                `Error occured while Error occured while adding certificate `
+            );
+            console.log(error);
+            dispatch({
+                type: ADDED_CERT,
+                payload: error.response.data.message,
+                // payload: "Server Error while requesting referral_code",
+            });
+        }
     };
 };

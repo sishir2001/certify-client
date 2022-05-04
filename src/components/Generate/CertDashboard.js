@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+
 class CertDashboard extends React.Component {
     printParams = () => {
         const event_name = this.props.match.params.eventName,
@@ -96,9 +97,9 @@ class CertDashboard extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isSignedIn: state.auth.isSignedIn,
-        username: state.auth.username,
+        username: state.auth.userName,
         password: state.auth.password,
     };
 };
 
-export default connect(mapStateToProps)(CertDashboard);
+export default connect(mapStateToProps,)(CertDashboard);
