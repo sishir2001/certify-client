@@ -5,6 +5,7 @@ import Logo from "./Constants/Logo";
 import { withRouter } from "react-router-dom";
 
 import { signedOut } from "../actions";
+import Dropdown from "../Dropdown";
 
 class Header extends React.Component {
     signOut = () => {
@@ -19,79 +20,7 @@ class Header extends React.Component {
             console.log("Logged In");
             return (
                 <React.Fragment>
-                    <li>
-                        <button
-                            id="dropdownNavbarLink"
-                            data-dropdown-toggle="dropdownNavbar"
-                            className="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 border-b border-gray-100 hover:bg-orange-300 hover:text-orange-600 md:hover:bg-transparent md:border-0 md:hover:text-orange-600 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                        >
-                            Hi,{this.props.userName}{" "}
-                            <svg
-                                className="w-4 h-4 ml-1"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"
-                                ></path>
-                            </svg>
-                        </button>
-
-                        <div
-                            id="dropdownNavbar"
-                            className="z-10 hidden bg-amber-50 divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-                            style={{
-                                position: "absolute",
-                                inset: "auto auto 0px 0px",
-                                margin: "0px",
-                                transform: "translate3d(741px, 2262.5px, 0px)",
-                            }}
-                            data-popper-reference-hidden=""
-                            data-popper-escaped=""
-                            data-popper-placement="top"
-                        >
-                            {/* <ul
-                                className="py-1 text-sm text-gray-700 dark:text-gray-400"
-                                aria-labelledby="dropdownLargeButton"
-                            >
-                                <li>
-                                    <Link
-                                        to="/"
-                                        className="headerDropdownItemClass"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to="/"
-                                        className="headerDropdownItemClass"
-                                    >
-                                        Settings
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to="/"
-                                        className="headerDropdownItemClass"
-                                    >
-                                        Earnings
-                                    </Link>
-                                </li>
-                            </ul> */}
-                            <div className="py-1">
-                                <Link
-                                    onClick={this.signOut}
-                                    className="headerDropdownItemClass2"
-                                >
-                                    Sign out
-                                </Link>
-                            </div>
-                        </div>
-                    </li>
+                    <Dropdown username={this.props.userName} />
                 </React.Fragment>
             );
         } else {

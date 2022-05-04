@@ -23,6 +23,7 @@ import cert from "../apis/cert";
 
 export const signedOut = () => {
     // * action return objects which redux takes of to send to the reducers
+    history.push("/auth/login");
     return {
         type: SIGNED_OUT,
     };
