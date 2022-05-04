@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Logo from "./Logo";
+import Logo from "./Constants/Logo";
 import { withRouter } from "react-router-dom";
 
-import { signedOut } from "../../actions";
+import { signedOut } from "../actions";
 
 class Header extends React.Component {
     signOut = () => {

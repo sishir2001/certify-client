@@ -3,7 +3,7 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import history from "../history";
 import Landing from "./Constants/Landing";
-import Header from "./Constants/Header";
+import Header from "./Header";
 import GetCert from "./Get/GetCert";
 import VerifyCert from "./Verify/VerifyCert";
 import GenerateCert from "./Generate/GenerateCert";
