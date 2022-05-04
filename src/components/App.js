@@ -18,6 +18,7 @@ import ReferralDisplay from "./auth/ReferralDisplay";
 import AddEvents from "./Generate/AddEvents";
 import CertDashboard from "./Generate/CertDashboard";
 import AddCertificates from "./Generate/AddCertificates";
+import NotFound from "./Constants/NotFound";
 class App extends React.Component {
     render() {
         return (
@@ -89,6 +90,7 @@ class App extends React.Component {
                                 component={ReferralDisplay}
                             />
                             <Route path="/about" exact component={About} />
+                            <Route component={NotFound} />
                         </Switch>
                     </div>
                 </Router>
