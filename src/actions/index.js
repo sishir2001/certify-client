@@ -197,20 +197,27 @@ export const verifyCert = (formValues) => {
         // creating a promise with axios
         // dispatch an object with an arrays of stream details to store it in redux
 
-        // ! asynchronous request to api
-        const response = await cert.get("/fetchcertificate", {
-            params: formValues,
-        });
-        console.log(`verifyCert Response : ${response}`);
-
-        dispatch({
-            type: VERIFY_CERT,
-            payload: "Will be there",
-        });
-
         // TODO : programmatic navigation to root route after the server responds
         history.push("/verifyCertificates/certStatus");
-        // history.push('/getCertificates/notfound');
+        try {
+            // ! asynchronous request to api
+            const response = await cert.get("/verifycertificate", {
+                params: formValues,
+            });
+            console.log(response);
+
+            dispatch({
+                type: VERIFY_CERT,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.error("Not verified");
+            console.log(error);
+            dispatch({
+                type: VERIFY_CERT,
+                payload: null,
+            });
+        }
     };
 };
 

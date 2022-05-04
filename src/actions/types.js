@@ -7,7 +7,6 @@ export const SIGNED_UP_ERROR = "SIGNED_UP_ERROR";
 export const REQUESTED_REFERRAL = "REQUESTED_REFERRAL";
 export const REQUESTED_REFERRAL_ERROR = "REQUESTED_REFERRAL_ERROR";
 export const FETCH_CERT = "FETCH_CERT";
-export const FETCH_CERT_ERROR = "FETCH_CERT_ERROR";
 export const VERIFY_CERT = "VERIFY_CERT";
 
 // ? for adding events in dashboard
@@ -19,7 +18,6 @@ export const FETCH_CERTS_LIST = "FETCH_CERTS_LIST";
 export const FETCH_CERTS_LIST_ERROR = "FETCH_CERTS_LIST_ERROR";
 export const FETCH_EVENTS = "FETCH_EVENTS";
 export const FETCH_EVENTS_ERROR = "FETCH_EVENTS_ERROR";
-
 
 // ? for refreshing the redux state
 export const NULL_EVENTS_MESSAGE = "NULL_EVENTS_MESSAGE";

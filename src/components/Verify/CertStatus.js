@@ -37,14 +37,15 @@ class CertStatus extends React.Component {
         );
     };
     renderBody = () => {
-        const content =
-                "For winning in Capture The Flag Competetion conducted online, Shillin Univ.",
-            participantName = "Shiv Nadar",
-            dateIssued = "Jan-26-2022",
-            position = "Winner";
         if (!this.props.verifyCertDetails) {
             return this.renderNotVerifiedMessage();
         }
+
+        const { content, position } = this.props.verifyCertDetails;
+
+        const participantName =
+                this.props.verifyCertDetails["Participant Name"],
+            dateIssued = this.props.verifyCertDetails["Date Issued"];
         return (
             <div className="text-center text-white text-lg tracking-tight">
                 <h2 className="my-4">

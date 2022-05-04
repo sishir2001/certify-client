@@ -22,6 +22,7 @@ const INITIAL_STATE = {
     fetched_certs_list_error: null,
     added_cert_message: null,
     added_event_message: null,
+    verifyCertDetails: null,
 };
 export const certificateReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
