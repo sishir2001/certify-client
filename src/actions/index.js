@@ -289,8 +289,8 @@ export const add_cert = ({
             // TODO : fetch the events
             const response = await cert.get("/addcertificate", {
                 headers: {
-                    username: username,
-                    password: password,
+                    username,
+                    password,
                 },
                 params: {
                     event_code,
@@ -307,7 +307,7 @@ export const add_cert = ({
             // TODO : add payload to dispatch
             dispatch({
                 type: ADDED_CERT,
-                payload: response.message,
+                payload: response.data.message,
             });
         } catch (error) {
             console.error(

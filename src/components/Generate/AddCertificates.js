@@ -30,7 +30,7 @@ class AddCertificates extends React.Component {
             });
             console.log(`Add Certificate Form Submitted`);
         } else {
-            console.log("May be the user is logged out");
+            console.log("No values have been entered");
         }
     };
     returnHeader() {
@@ -180,7 +180,7 @@ const validate = (formValues) => {
     if (!formValues.content) {
         errors.content = "Content Required";
     }
-    if (!formValues.postion) {
+    if (!formValues.position) {
         errors.position = "Position Required";
     }
     return errors;
@@ -197,6 +197,6 @@ const mapStateToProps = ({ cert, auth }) => {
 export default connect(mapStateToProps, { add_cert })(
     reduxForm({
         form: "AddCertificates",
-        // validate,
+        validate,
     })(AddCertificates)
 );
