@@ -14,6 +14,9 @@ import {
     FETCH_EVENTS_ERROR,
     FETCH_CERTS_LIST,
     FETCH_CERTS_LIST_ERROR,
+    ADDED_EVENT,
+    NULL_CERTS_MESSAGE,
+    NULL_EVENTS_MESSAGE,
 } from "./types";
 import history from "../history";
 import cert from "../apis/cert";
@@ -320,5 +323,63 @@ export const add_cert = ({
                 // payload: "Server Error while requesting referral_code",
             });
         }
+    };
+};
+
+export const add_event = ({
+    username,
+    password,
+    event_code,
+    event_name,
+    certificate_default_content,
+    template_number,
+}) => {
+    console.log("Adding the event");
+    return async (dispatch, getState) => {
+        try {
+            // TODO : fetch the events
+            const response = await cert.get("/registerevent", {
+                headers: {
+                    username,
+                    password,
+                },
+                params: {
+                    event_code,
+                    event_name,
+                    certificate_default_content,
+                    template_number,
+                },
+            });
+
+            console.log(`Response of adding the event`);
+            console.log(response);
+
+            // TODO : add payload to dispatch
+            dispatch({
+                type: ADDED_EVENT,
+                payload: response.data.message,
+            });
+        } catch (error) {
+            console.error(
+                `Error occured while Error occured while adding event `
+            );
+            console.log(error);
+            dispatch({
+                type: ADDED_EVENT,
+                payload: error.response.data.message,
+                // payload: "Server Error while requesting referral_code",
+            });
+        }
+    };
+};
+
+export const null_events_message = () => {
+    return {
+        type: NULL_EVENTS_MESSAGE,
+    };
+};
+export const null_certs_message = () => {
+    return {
+        type: NULL_CERTS_MESSAGE,
     };
 };

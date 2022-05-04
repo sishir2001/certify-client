@@ -8,6 +8,9 @@ import {
     REQUESTED_REFERRAL,
     REQUESTED_REFERRAL_ERROR,
     VERIFY_CERT,
+    ADDED_EVENT,
+    NULL_CERTS_MESSAGE,
+    NULL_EVENTS_MESSAGE,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -18,6 +21,7 @@ const INITIAL_STATE = {
     fetched_certs_list: null,
     fetched_certs_list_error: null,
     added_cert_message: null,
+    added_event_message: null,
 };
 export const certificateReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -60,6 +64,21 @@ export const certificateReducers = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 added_cert_message: action.payload,
+            };
+        case ADDED_EVENT:
+            return {
+                ...state,
+                added_event_message: action.payload,
+            };
+        case NULL_CERTS_MESSAGE:
+            return {
+                ...state,
+                added_cert_message: null,
+            };
+        case NULL_EVENTS_MESSAGE:
+            return {
+                ...state,
+                added_event_message: null,
             };
         default:
             return state;

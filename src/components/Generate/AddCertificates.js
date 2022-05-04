@@ -1,10 +1,13 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { add_cert } from "../../actions/";
+import { add_cert, null_certs_message } from "../../actions/";
 // import { Link } from "react-router-dom";
 
 class AddCertificates extends React.Component {
+    componentDidMount() {
+        this.props.null_certs_message();
+    }
     printParams = () => {
         const event_name = this.props.match.params.eventName,
             event_code = this.props.match.params.event_code;
@@ -194,7 +197,7 @@ const mapStateToProps = ({ cert, auth }) => {
     };
 };
 
-export default connect(mapStateToProps, { add_cert })(
+export default connect(mapStateToProps, { add_cert, null_certs_message })(
     reduxForm({
         form: "AddCertificates",
         validate,

@@ -19,3 +19,7 @@ export const FETCH_CERTS_LIST_ERROR = "FETCH_CERTS_LIST_ERROR";
 export const FETCH_EVENTS = "FETCH_EVENTS";
 export const FETCH_EVENTS_ERROR = "FETCH_EVENTS_ERROR";
 
+
+// ? for refreshing the redux state
+export const NULL_EVENTS_MESSAGE = "NULL_EVENTS_MESSAGE";
+export const NULL_CERTS_MESSAGE = "NULL_CERTS_MESSAGE";
