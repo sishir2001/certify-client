@@ -5,11 +5,17 @@ import certImg from "../../assets/cert_template.webp";
 class CertFound extends React.Component {
     render() {
         console.log(this.props.certDetails);
+        const imgLink = this.props.certDetails["Certificate Link"];
+        console.log(imgLink);
         return (
             <div className="container mx-auto mt-16 p-2 lg:grid lg:grid-cols-3 gap-2">
                 <div className="bg-orange-500 col-span-1 m-2 rounded-xl">
                     <h2 className="text-white text-2xl px-4 py-16 text-center tracking-tight">
-                        Congratulations on obtaining a certificate !! 🎉
+                        Congratulations on{" "}
+                        <span className="font-bold tracking-tighter">
+                            {this.props.certDetails["Participant Name"]}
+                        </span>{" "}
+                        obtaining a certificate !! 🎉
                     </h2>
                     <hr className=" border-white border-1 p-4 mx-4" />
                     <input
@@ -25,7 +31,7 @@ class CertFound extends React.Component {
                 </div>
                 <div className="col-span-2 m-2">
                     <img
-                        src={certImg}
+                        src={imgLink}
                         alt="certificate"
                         className="w-full h-full"
                     />
@@ -44,7 +50,7 @@ class CertFound extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        certDetails: state.cert,
+        certDetails: state.cert.fetchCertDetails,
     };
 };
 

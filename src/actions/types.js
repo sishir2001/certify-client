@@ -7,6 +7,7 @@ export const SIGNED_UP_ERROR = "SIGNED_UP_ERROR";
 export const REQUESTED_REFERRAL = "REQUESTED_REFERRAL";
 export const REQUESTED_REFERRAL_ERROR = "REQUESTED_REFERRAL_ERROR";
 export const FETCH_CERT = "FETCH_CERT";
+export const FETCH_CERT_ERROR = "FETCH_CERT_ERROR";
 export const VERIFY_CERT = "VERIFY_CERT";
 
 // ? for adding events in dashboard

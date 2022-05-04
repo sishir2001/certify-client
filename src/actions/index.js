@@ -163,22 +163,26 @@ export const fetchCert = (formValues) => {
         // creating a promise with axios
         // dispatch an object with an arrays of stream details to store it in redux
 
-        // ! asynchronous request to api
-        const response = await cert.get("/fetchcertificate", {
-            params: formValues,
-        });
-        console.log(response);
+        try {
+            // ! asynchronous request to api
+            const response = await cert.get("/fetchcertificate", {
+                params: formValues,
+            });
+            console.log(response);
 
-        dispatch({
-            type: FETCH_CERT,
-            payload: "Will be there",
-        });
-        // TODO : programmatic navigation to root route after the server responds
-        // TODO : navigate according to the response of the API request
-        // * 200
-        history.push("/getCertificates/found");
-        // ! 404
-        // history.push('/getCertificates/notfound');
+            dispatch({
+                type: FETCH_CERT,
+                payload: response.data,
+            });
+            // TODO : programmatic navigation to root route after the server responds
+            // TODO : navigate according to the response of the API request
+            // * 200
+            history.push("/getCertificates/found");
+        } catch (error) {
+            console.error("Error Occured While fetching the certificate");
+            console.log(error);
+            history.push("/getCertificates/notfound");
+        }
     };
 };
 
