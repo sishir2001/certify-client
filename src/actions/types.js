@@ -15,6 +15,7 @@ export const ADDED_CERT = "ADDED_CERT";
 
 // ? for fetching the list/json response from the server
 export const FETCH_CERTS_LIST = "FETCH_CERTS_LIST";
+export const FETCH_CERTS_LIST_ERROR = "FETCH_CERTS_LIST_ERROR";
 export const FETCH_EVENTS = "FETCH_EVENTS";
 export const FETCH_EVENTS_ERROR = "FETCH_EVENTS_ERROR";
 

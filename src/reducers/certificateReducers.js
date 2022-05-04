@@ -1,6 +1,8 @@
 import {
     ADDED_CERT,
     FETCH_CERT,
+    FETCH_CERTS_LIST,
+    FETCH_CERTS_LIST_ERROR,
     FETCH_EVENTS,
     FETCH_EVENTS_ERROR,
     REQUESTED_REFERRAL,
@@ -13,7 +15,8 @@ const INITIAL_STATE = {
     referral_code_error: null,
     fetched_events: null,
     fetched_events_error: null,
-    fetched_certs: null,
+    fetched_certs_list: null,
+    fetched_certs_list_error: null,
     added_cert_message: null,
 };
 export const certificateReducers = (state = INITIAL_STATE, action) => {
@@ -41,7 +44,17 @@ export const certificateReducers = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 // fetched_events: [],
-                fetched_events_error:action.payload
+                fetched_events_error: action.payload,
+            };
+        case FETCH_CERTS_LIST:
+            return {
+                ...state,
+                fetched_certs_list: action.payload,
+            };
+        case FETCH_CERTS_LIST_ERROR:
+            return {
+                ...state,
+                fetched_certs_list: action.payload,
             };
         case ADDED_CERT:
             return {

@@ -12,6 +12,8 @@ import {
     FETCH_EVENTS,
     ADDED_CERT,
     FETCH_EVENTS_ERROR,
+    FETCH_CERTS_LIST,
+    FETCH_CERTS_LIST_ERROR,
 } from "./types";
 import history from "../history";
 import cert from "../apis/cert";
@@ -233,6 +235,39 @@ export const fetch_events = ({ username, password }) => {
             console.log(error);
             dispatch({
                 type: FETCH_EVENTS_ERROR,
+                payload: error.response.data.message,
+            });
+        }
+    };
+};
+
+export const fetch_certs_list = ({ username, password, event_code }) => {
+    console.log(`Fetching the certificates of the event_code : ${event_code}`);
+    return async (dispatch, getState) => {
+        try {
+            // TODO : fetch all the certificates related to an event
+            const response = await cert.get("/geteventcertificates", {
+                headers: {
+                    username,
+                    password,
+                },
+                params: {
+                    event_code,
+                },
+            });
+
+            console.log(`Response of fetching the certificate events : `);
+            console.log(response);
+
+            dispatch({
+                type: FETCH_CERTS_LIST,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.error(`Error occured while fetching certificates list`);
+            console.log(error);
+            dispatch({
+                type: FETCH_CERTS_LIST_ERROR,
                 payload: error.response.data.message,
             });
         }
