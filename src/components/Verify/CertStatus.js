@@ -41,7 +41,7 @@ class CertStatus extends React.Component {
             return this.renderNotVerifiedMessage();
         }
 
-        const { content, position } = this.props.verifyCertDetails;
+        const { content, Position } = this.props.verifyCertDetails;
 
         const participantName =
                 this.props.verifyCertDetails["Participant Name"],
@@ -70,7 +70,7 @@ class CertStatus extends React.Component {
                     <span className="font-bold tracking-normal">
                         Position :{" "}
                     </span>
-                    {position}
+                    {Position}
                 </h2>
             </div>
         );

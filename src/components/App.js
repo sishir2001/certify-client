@@ -19,6 +19,7 @@ import AddEvents from "./Generate/AddEvents";
 import CertDashboard from "./Generate/CertDashboard";
 import AddCertificates from "./Generate/AddCertificates";
 import NotFound from "./Constants/NotFound";
+import VerifyQR from "./Verify/VerifyQR";
 class App extends React.Component {
     render() {
         return (
@@ -47,6 +48,11 @@ class App extends React.Component {
                                 path="/verifyCertificates"
                                 exact
                                 component={VerifyCert}
+                            />
+                            <Route
+                                path="/verifyCertificates/qrcode/:uid"
+                                exact
+                                component={VerifyQR}
                             />
                             <Route
                                 path="/verifyCertificates/certStatus"
