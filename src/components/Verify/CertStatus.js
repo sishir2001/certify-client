@@ -78,8 +78,8 @@ class CertStatus extends React.Component {
     render() {
         console.log(this.props.verifyCertDetails);
         return (
-            <div className="container mx-auto mt-16 p-10 lg:flex lg:items-center gap-2">
-                <div className="bg-orange-500 col-2 m-2 px-16 py-10 rounded-xl md:max-w-sm md:mx-auto">
+            <div className="container mx-auto mt-16 p-2 lg:flex lg:items-center gap-2">
+                <div className="bg-orange-500 col-2 m-2 px-6 md:px-10 py-10 rounded-xl md:max-w-sm md:mx-auto">
                     <div id="Heading">{this.renderHeader()}</div>
                     <hr className=" border-white border-1 p-4 mx-4" />
                     <div id="Content">{this.renderBody()}</div>
