@@ -1,3 +1,3 @@
 Certify-Client
 
-# link : https://master.d3a3ry65u919t7.amplifyapp.com/
+# link : https://certify-client-b1vi934bk-sishir2001.vercel.app/
