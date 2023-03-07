@@ -20,6 +20,8 @@ import CertDashboard from "./Generate/CertDashboard";
 import AddCertificates from "./Generate/AddCertificates";
 import NotFound from "./Constants/NotFound";
 import VerifyQR from "./Verify/VerifyQR";
+
+// routing component for now
 class App extends React.Component {
     render() {
         return (
@@ -29,11 +31,7 @@ class App extends React.Component {
                         <Header />
                         <Switch>
                             <Route path="/" exact component={Landing} />
-                            <Route
-                                path="/getCertificates"
-                                exact
-                                component={GetCert}
-                            />
+                            <Route path="/getCertificates" exact component={GetCert} />
                             <Route
                                 path="/getCertificates/found"
                                 exact
@@ -44,11 +42,7 @@ class App extends React.Component {
                                 exact
                                 component={CertNotFound}
                             />
-                            <Route
-                                path="/verifyCertificates"
-                                exact
-                                component={VerifyCert}
-                            />
+                            <Route path="/verifyCertificates" exact component={VerifyCert} />
                             <Route
                                 path="/verifyCertificates/qrcode/:uid"
                                 exact
@@ -80,11 +74,7 @@ class App extends React.Component {
                                 component={AddCertificates}
                             />
                             <Route path="/auth/login" exact component={Login} />
-                            <Route
-                                path="/auth/signup"
-                                exact
-                                component={SignUp}
-                            />
+                            <Route path="/auth/signup" exact component={SignUp} />
                             <Route
                                 path="/auth/requestReferral"
                                 exact
