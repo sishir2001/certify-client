@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import certImg from "../../assets/cert_template.webp";
 
 class CertFound extends React.Component {
     render() {
@@ -30,11 +29,7 @@ class CertFound extends React.Component {
                     </div>
                 </div>
                 <div className="col-span-2 m-2">
-                    <img
-                        src={imgLink}
-                        alt="certificate"
-                        className="w-full h-full"
-                    />
+                    <img src={imgLink} alt="certificate" className="w-full h-full" />
                     <div>
                         <div className="grid grid-cols-1 justify-items-center p-4">
                             <button class="orangeButton" type="submit">

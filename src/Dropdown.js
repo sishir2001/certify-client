@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { connect } from "react-redux";
 import { signedOut } from "./actions";
@@ -38,11 +38,8 @@ function Dropdown(props) {
                                 {({ active }) => (
                                     <button
                                         onClick={onSignOut}
-                                        className={`${
-                                            active
-                                                ? "bg-orange-500 text-white"
-                                                : "text-gray-900"
-                                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                        className={`${active ? "bg-orange-500 text-white" : "text-gray-900"
+                                            } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                     >
                                         {active ? (
                                             <DeleteActiveIcon
